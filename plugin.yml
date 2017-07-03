@@ -1,0 +1,69 @@
+name: TakenKits
+main: com.me.sly.kits.main.Corrupted
+author: Ayazo
+version: 1.3.0
+depend: [EffectLib, ProtocolLib]
+description: >
+             Taken Gaming Kits Plugin
+commands:
+    Kys:
+      description: Kill Yourself
+    Broadcast:
+      description: Broadcast a message to the server
+    TpAllClass:
+      description: TP Everyone who has a class to you
+    Spawn:
+      description: Teleport to Spawn
+    ClearDB:
+      description: Clear a player's database statistics
+    Arena:
+      description: Create Arenas
+    Idea:
+      description: Ideas
+    Bug:
+      description: Bugs
+    Team:
+      description: Team base command
+    SC:
+      description: Staff Chat
+    GCM:
+      description: Global Coin Multiplier
+    Group:
+      description: Manage a player's group
+    STFU:
+      description: STFU
+    Package:
+      description: Give a package to a player
+    SetAccess:
+      description: Change the access mode for the server
+    Db:
+      description: Edit the database entries for a player
+    ToggleInvite:
+      description: Toggle team invites for that session
+    Booster:
+      description: See how long your booster is active for
+    Messages:
+      description: Edit the broadcast messages
+    Stats:
+      description: See a players statistics
+    Nick:
+      description: See a players statistics
+    Vote:
+      description: See a players statistics
+    Staff:
+      description: See a players statistics
+permissions:
+  taken.*:
+    description: Allows use of all TakenKits commands.
+    default: false
+    children:
+      taken.kill: true
+      taken.spawn: true
+      taken.broadcast: true
+      taken.tpallclass: true
+      taken.arena: true
+      taken.idea: true
+      taken.bug: true
+      taken.sc: true
+      taken.gcm: true
+      taken.statscommand: true

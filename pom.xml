@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>TakenGamingRedux</groupId>
+    <artifactId>TakenGamingRedux</artifactId>
+    <version>2.0</version>
+    <packaging>jar</packaging>
+
+    <name>Taken Gaming Redux</name> <!-- Actual project name -->
+    <url>http://maven.apache.org</url>
+
+    <properties> <!-- Sets the char set for the project -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
+    <dependencies> <!-- All the dependencies required for the project to run -->
+        <!--Spigot API-->
+        <dependency>
+        <groupId>org.spigotmc</groupId>
+        <artifactId>spigot-api</artifactId>
+        <version>1.12.2-R0.1-SNAPSHOT</version>
+        <scope>provided</scope>
+        </dependency>
+        <!--Bukkit API-->
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>  <!-- Plugin used to compile java files into class files -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source> <!-- JDK Version -->
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin> <!-- Plugin used to jar class files into a .jar file -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <finalName>SpecialBot
+                    </finalName>  <!-- Changes the final name of the actual .jar file (Makes it constant so script knows -->
+                    <archive>
+                        <manifestFile>src/main/resources/META_INF/MANIFEST.MF
+                        </manifestFile> <!-- Manifest file path that contains the main class path -->
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

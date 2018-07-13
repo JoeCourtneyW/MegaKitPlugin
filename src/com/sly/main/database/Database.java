@@ -3,9 +3,6 @@ package com.sly.main.database;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
-
 public class Database
 {
 
@@ -13,7 +10,7 @@ public class Database
 
 	public Database(Connection connection) {
 		this.connection = connection;
-		// Creating a Mongo client
+		/*// Creating a Mongo client
 		MongoClient mongo = new MongoClient("localhost", 27017);
 
 		mongo.
@@ -24,9 +21,7 @@ public class Database
 
 		// Accessing the database
 		MongoDatabase database = mongo.getDatabase("myDb");
-		System.out.println("Credentials ::" + credential);
-	}
-
+		System.out.println("Credentials ::" + credential);*/
 	}
 
 	public Connection getConnection() {

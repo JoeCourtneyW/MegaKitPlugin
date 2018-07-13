@@ -29,7 +29,6 @@ import com.sly.main.resources.MathUtil;
 public class Arcanist extends Kit implements Listener
 {
 
-	@SuppressWarnings("deprecation")
 	public void mainAbility(PlayerModel p) {
 		for (Block b : p.getPlayer().getLineOfSight(null, 50)) {
 			if (b.getType() != Material.AIR) // make sure the LOS isn't blocked
@@ -45,8 +44,8 @@ public class Arcanist extends Kit implements Listener
 					if (!entity.sameSquad(p)) { // Make sure they are not on the same team
 						if (!entity.equals(p)) { // Male sure they aren't hitting themselves
 							entity.damageImpure(3.3D, p.getPlayer()); // Damage the player, doesn't ignore armor
-							entity.getPlayer().playSound(p.getPlayer().getLocation(), Sound.WITHER_SHOOT, 1, 2);
-							p.getPlayer().playSound(p.getPlayer().getLocation(), Sound.WITHER_SHOOT, 1, 2);
+							entity.getPlayer().playSound(p.getPlayer().getLocation(), Sound.ENTITY_WITHER_SHOOT, 1, 2);
+							p.getPlayer().playSound(p.getPlayer().getLocation(), Sound.ENTITY_WITHER_SHOOT, 1, 2);
 							return; // break out of entire loop because we found a player to damage
 						}
 					}
@@ -81,12 +80,12 @@ public class Arcanist extends Kit implements Listener
 			PlayerModel p = PlayerModel.getPlayerModel((Player) event.getEntity());
 			if (p.getKit() == Kits.ARCANIST) {
 				if (MathUtil.rand(1, 100) <= 20) {
-					p.getPlayer().playSound(p.getPlayer().getLocation(), Sound.EXPLODE, 1, 2);
+					p.getPlayer().playSound(p.getPlayer().getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1, 2);
 					for (Entity e : p.getPlayer().getNearbyEntities(3, 3, 3)) {
 						if (e instanceof Player) {
 							PlayerModel entity = PlayerModel.getPlayerModel((Player) e);
 							entity.damagePure(2.0, p.getPlayer());
-							entity.getPlayer().playSound(p.getPlayer().getLocation(), Sound.EXPLODE, 1, 2);
+							entity.getPlayer().playSound(p.getPlayer().getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1, 2);
 						}
 					}
 				}

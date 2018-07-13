@@ -26,7 +26,6 @@ import com.sly.main.kits.Kit;
 import com.sly.main.kits.Kits;
 import com.sly.main.player.PlayerModel;
 import com.sly.main.resources.BetterItem;
-import com.sly.main.resources.EasyEnchant;
 import com.sly.main.resources.MathUtil;
 import com.sly.main.resources.MyMetadata;
 
@@ -36,9 +35,9 @@ public class Blaze extends Kit implements Listener
 	/**
 	 * Fireball
 	 */
-	@SuppressWarnings("deprecation")
-	public void mainAbility(final Player p) {
-		p.playSound(p.getLocation(), Sound.BLAZE_BREATH, 1, 0.75F);
+	public void mainAbility(final PlayerModel player) {
+		Player p = player.getPlayer();
+		p.playSound(p.getLocation(), Sound.ENTITY_BLAZE_BURN, 1, 0.75F); //Blaze breath sound, maybe not the right one
 		// For loop to spawn 3 fireballs 12 ticks after one another
 		for (int i = 0; i < 3; i++) {
 			if (p.isDead())
@@ -56,19 +55,18 @@ public class Blaze extends Kit implements Listener
 	}
 
 	// Listener for main ability damage event to increase damage done by normal fireballs
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void FireballExplosionI(EntityDamageByEntityEvent event) {
 		if (event.getEntity() instanceof Player && event.getDamager().getType() == EntityType.FIREBALL) {
 			Projectile fireball = (Projectile) event.getDamager();
-			PlayerModel p = PlayerModel.getPlayerModel((Player) fireball.getShooter());
+			PlayerModel blaze = PlayerModel.getPlayerModel((Player) fireball.getShooter());
 			event.setDamage(0.0);
 			event.setCancelled(true);
-			if (p.getPlayer().getName().equalsIgnoreCase(((Player) event.getEntity()).getName()))
-				if (!Squad.sameTeam((Player) event.getEntity(),
-						(Player) ((Projectile) event.getDamager()).getShooter())) {
-					p.damagePure(5.6, ((Projectile) event.getDamager()).getShooter());
-				}
+			if (blaze.getPlayer().getName().equalsIgnoreCase(event.getEntity().getName())) {
+                if (blaze.sameSquad(PlayerModel.getPlayerModel((Player) fireball.getShooter()))){
+                    blaze.damagePure(5.6, ((Projectile) event.getDamager()).getShooter());
+                }
+            }
 			event.getDamager().remove();
 		}
 	}
@@ -80,8 +78,8 @@ public class Blaze extends Kit implements Listener
 	public void CallOfTheBlazes(PlayerDeathEvent event) {
 		if (event.getEntity().getType() == EntityType.PLAYER && event.getEntity().getKiller() != null
 				&& event.getEntity().getKiller().getType() == EntityType.PLAYER) {
-			PlayerModel p = PlayerModel.getPlayerModel((Player) event.getEntity().getKiller());
-			Player death = (Player) event.getEntity();
+			PlayerModel p = PlayerModel.getPlayerModel(event.getEntity().getKiller());
+			Player death = event.getEntity();
 			if (p.getKit() == Kits.BLAZE) {
 				if (p.getPlayer().getWorld().getName().contains("Nube")) {
 					super.newMinion(death.getLocation(), p.getPlayer(), EntityType.BLAZE);

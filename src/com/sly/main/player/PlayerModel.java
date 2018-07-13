@@ -274,7 +274,6 @@ public class PlayerModel
 
 	}
 
-	@SuppressWarnings("deprecation")
 	public Player getNearestPlayer() {
 		Player p = getPlayer();
 		Player nearestPlayer = p;
@@ -406,9 +405,7 @@ public class PlayerModel
 					continue;
 				p.removePotionEffect(effect.getType());
 				p.addPotionEffect(effect);
-				continue;
-			} else
-				continue;
+			}
 		}
 		p.addPotionEffect(effect);
 	}

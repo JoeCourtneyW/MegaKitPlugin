@@ -92,16 +92,6 @@ public class MathUtil
 
 	private static final int kFactor = 32;
 
-	/**
-	 * 
-	 * @param winner
-	 *            The PlayerModel of the winning player
-	 * @param loser
-	 *            The PlayerModel of the losing player
-	 * @param gameType
-	 *            The GameType in which the event took place
-	 * @return A double array that contains the DELTAS for both player's ratings
-	 */
 	public static float[] getEloChangeInGame(Game game, TeamColor winningTeamColor) {
 
 		float[] deltas = new float[game.getAllPlayers().size()]; // A return array that will contain all player's deltas

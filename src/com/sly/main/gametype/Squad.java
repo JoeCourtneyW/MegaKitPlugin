@@ -70,7 +70,7 @@ public class Squad implements Iterable<PlayerModel>
 	public void dissolve() {
 		for (PlayerModel player : getSquadMembers()) {
 			if (player.isOnline()) {
-				player.sendPrefixedMessage("§eThe team you were on has been dissolved!");
+				player.sendPrefixedMessage("Â§eThe team you were on has been dissolved!");
 				player.getPlayer().closeInventory(); // Close their inventory so they can't queue up for games on any inventory still on their screen
 				player.setSquad(null); // Make sure they don't have a squad on their model anymore
 			}
